@@ -21,3 +21,7 @@ loot search speed while preserving vanilla gameplay.
 1. Copy DLL into BepInEx/plugins
 2. Launch the game
 3. Configure in F12
+
+## Development Testing
+
+It is recommended to test this mod on a clean SPT 4.0.13 installation before testing with large modlists.
