@@ -1,0 +1,3 @@
+SearchSpeedMultiplier
+
+ItemExamineMultiplier
