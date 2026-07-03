@@ -1,3 +1,11 @@
+Vanilla-friendly search speed modifier for SPT 4.0.13.
+
+✔ Doesn't skip animations
+
+✔ Doesn't auto-search
+
+✔ Only modifies vanilla search delays
+
 # Loot Search Speed
 
 A lightweight client-side mod for SPT that allows you to adjust
