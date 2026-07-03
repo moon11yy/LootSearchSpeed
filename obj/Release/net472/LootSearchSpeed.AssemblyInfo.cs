@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LootSearchSpeed")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+94ec2687093185879a26e564d15838f83276097a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cca87593ae7d0723b287d37928aa52fa5bbc8f64")]
 [assembly: System.Reflection.AssemblyProductAttribute("LootSearchSpeed")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LootSearchSpeed")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

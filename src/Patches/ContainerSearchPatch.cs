@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using HarmonyLib;
 using LootSearchSpeed.Core;
 using LootSearchSpeed.Utils;
@@ -8,33 +11,82 @@ namespace LootSearchSpeed.Patches;
 
 internal sealed class ContainerSearchPatch : BasePatch
 {
-    public ContainerSearchPatch(Harmony harmony) : base(harmony)
-    {
-    }
+    public ContainerSearchPatch(Harmony harmony) : base(harmony) { }
 
     internal override void Apply()
     {
-        Type? targetType = AccessTools.TypeByName("GClass3515");
+        Type? initialStateMachine = AccessTools.TypeByName("GClass3515+Struct915");
+        Type? revealStateMachine = AccessTools.TypeByName("GClass3515+Struct916");
 
-        if (targetType == null)
+        if (initialStateMachine == null || revealStateMachine == null)
         {
-            Log.Warning("Container search class GClass3515 was not found.");
+            Log.Warning("Container search state machines were not found.");
             return;
         }
 
-        MethodInfo? method5 = AccessTools.Method(targetType, "method_5");
-        MethodInfo? method6 = AccessTools.Method(targetType, "method_6");
+        MethodInfo? initialMoveNext = AccessTools.Method(initialStateMachine, "MoveNext");
+        MethodInfo? revealMoveNext = AccessTools.Method(revealStateMachine, "MoveNext");
 
-        if (method5 == null)
+        if (initialMoveNext == null || revealMoveNext == null)
         {
-            Log.Warning("Container search initial delay method_5 was not found.");
+            Log.Warning("Container search MoveNext methods were not found.");
+            return;
         }
 
-        if (method6 == null)
-        {
-            Log.Warning("Container search item reveal method_6 was not found.");
-        }
+        Harmony.Patch(
+            initialMoveNext,
+            transpiler: new HarmonyMethod(typeof(ContainerSearchPatch), nameof(InitialDelayTranspiler)));
 
-        Log.Info("ContainerSearchPatch discovery complete.");
+        Harmony.Patch(
+            revealMoveNext,
+            transpiler: new HarmonyMethod(typeof(ContainerSearchPatch), nameof(ItemRevealDelayTranspiler)));
+
+        Log.Info("ContainerSearchPatch applied.");
+    }
+
+    private static IEnumerable<CodeInstruction> InitialDelayTranspiler(IEnumerable<CodeInstruction> instructions)
+    {
+        foreach (CodeInstruction instruction in instructions)
+        {
+            if (instruction.opcode == OpCodes.Ldc_I4 && instruction.operand is int value && value == 2000)
+            {
+                yield return new CodeInstruction(
+                    OpCodes.Call,
+                    AccessTools.Method(typeof(ContainerSearchPatch), nameof(GetInitialSearchDelayMs)));
+
+                continue;
+            }
+
+            yield return instruction;
+        }
+    }
+
+    private static IEnumerable<CodeInstruction> ItemRevealDelayTranspiler(IEnumerable<CodeInstruction> instructions)
+    {
+        foreach (CodeInstruction instruction in instructions)
+        {
+            if (instruction.opcode == OpCodes.Ldc_R4 && instruction.operand is float value && Math.Abs(value - 1000f) < 0.01f)
+            {
+                yield return new CodeInstruction(
+                    OpCodes.Call,
+                    AccessTools.Method(typeof(ContainerSearchPatch), nameof(GetItemRevealDelayBaseMs)));
+
+                continue;
+            }
+
+            yield return instruction;
+        }
+    }
+
+    private static int GetInitialSearchDelayMs()
+    {
+        float multiplier = ModConfig.InitialSearchDelayMultiplier.Value;
+        return Math.Max(0, (int)(2000f * multiplier));
+    }
+
+    private static float GetItemRevealDelayBaseMs()
+    {
+        float multiplier = ModConfig.ItemRevealDelayMultiplier.Value;
+        return Math.Max(0f, 1000f * multiplier);
     }
 }
