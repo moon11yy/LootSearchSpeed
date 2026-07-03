@@ -8,8 +8,8 @@ internal static class PatchManager
 {
     internal static void Apply(Harmony harmony)
     {
-        SearchDiscovery.Run();
-
+//        SearchDiscovery.Run();
+//
         new ContainerSearchPatch(harmony).Apply();
         new ItemExaminePatch(harmony).Apply();
     }
