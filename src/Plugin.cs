@@ -18,6 +18,8 @@ public class Plugin : BaseUnityPlugin
     {
         Instance = this;
 
+        ModConfig.Init(Config);
+
         Harmony = new Harmony(PluginInfo.Guid);
         Harmony.PatchAll();
 
