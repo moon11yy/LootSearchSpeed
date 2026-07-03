@@ -1,3 +1,18 @@
+# moon11yy Loot Search Speed
+
+A lightweight and vanilla-friendly search speed modifier for SPT.
+
+## Features
+
+- Vanilla search behavior
+- Configurable search speed
+- Configurable item reveal speed
+- No instant loot opening
+- No automatic searching
+- Lightweight Harmony patches
+- Configuration Manager support
+- Open source
+
 Vanilla-friendly search speed modifier for SPT 4.0.13.
 
 ✔ Doesn't skip animations
