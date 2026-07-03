@@ -1,0 +1,10 @@
+C:\Users\Queen\Desktop\moon11yy-LootSearchSpeed\obj\Release\net472\LootSearchSpeed.csproj.AssemblyReference.cache
+C:\Users\Queen\Desktop\moon11yy-LootSearchSpeed\obj\Release\net472\LootSearchSpeed.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Queen\Desktop\moon11yy-LootSearchSpeed\obj\Release\net472\LootSearchSpeed.AssemblyInfoInputs.cache
+C:\Users\Queen\Desktop\moon11yy-LootSearchSpeed\obj\Release\net472\LootSearchSpeed.AssemblyInfo.cs
+C:\Users\Queen\Desktop\moon11yy-LootSearchSpeed\obj\Release\net472\LootSearchSpeed.csproj.CoreCompileInputs.cache
+C:\Users\Queen\Desktop\moon11yy-LootSearchSpeed\obj\Release\net472\LootSearchSpeed.sourcelink.json
+C:\Users\Queen\Desktop\moon11yy-LootSearchSpeed\bin\Release\net472\LootSearchSpeed.dll
+C:\Users\Queen\Desktop\moon11yy-LootSearchSpeed\bin\Release\net472\LootSearchSpeed.pdb
+C:\Users\Queen\Desktop\moon11yy-LootSearchSpeed\obj\Release\net472\LootSearchSpeed.dll
+C:\Users\Queen\Desktop\moon11yy-LootSearchSpeed\obj\Release\net472\LootSearchSpeed.pdb

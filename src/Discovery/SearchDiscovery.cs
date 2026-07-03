@@ -11,13 +11,13 @@ internal static class SearchDiscovery
     {
         Log.Info("Search discovery started.");
 
-        var assembly = typeof(EFT.Player).Assembly;
+        Assembly assembly = typeof(EFT.Player).Assembly;
 
         var types = assembly
             .GetTypes()
             .Where(type =>
-                type.Name.Contains("Search", StringComparison.OrdinalIgnoreCase) ||
-                type.FullName?.Contains("Search", StringComparison.OrdinalIgnoreCase) == true)
+                type.Name.IndexOf("Search", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                (type.FullName != null && type.FullName.IndexOf("Search", StringComparison.OrdinalIgnoreCase) >= 0))
             .OrderBy(type => type.FullName)
             .ToList();
 
@@ -27,14 +27,14 @@ internal static class SearchDiscovery
         {
             Log.Info($"[SearchDiscovery] Type: {type.FullName}");
 
-            var methods = type.GetMethods(
+            MethodInfo[] methods = type.GetMethods(
                 BindingFlags.Instance |
                 BindingFlags.Static |
                 BindingFlags.Public |
                 BindingFlags.NonPublic |
                 BindingFlags.DeclaredOnly);
 
-            foreach (var method in methods)
+            foreach (MethodInfo method in methods)
             {
                 Log.Info($"[SearchDiscovery]   Method: {method.Name} -> {method.ReturnType.Name}");
             }
