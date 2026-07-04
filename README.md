@@ -1,3 +1,11 @@
+<p align="center">
+  <img src="docs/images/logo.png" width="256">
+</p>
+
+<h1 align="center">
+moon11yy Loot Search Speed
+</h1>
+
 # moon11yy Loot Search Speed
 
 A lightweight and vanilla-friendly search speed modifier for SPT.
