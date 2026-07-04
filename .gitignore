@@ -1,11 +1,9 @@
-# Build
+# Build output
 bin/
 obj/
 
 # Visual Studio
 .vs/
-*.user
-*.suo
 
 # Rider
 .idea/
@@ -13,13 +11,8 @@ obj/
 # VS Code
 .vscode/
 
-# Logs
-*.log
-
-# Debug
-Debug/
-Release/
-
-# BepInEx build output
-*.dll
+# Generated files
+*.user
+*.suo
+*.cache
 *.pdb

@@ -14,7 +14,7 @@ internal static class ModConfig
             "InitialSearchDelayMultiplier",
             0.5f,
             new ConfigDescription(
-                "Multiplier for the initial Searching delay. 1.0 = vanilla, 0.5 = 2x faster, 0.0 = instant.",
+                "Controls the initial 'Searching...' delay before a container, corpse or other searchable loot opens. 1.0 = vanilla, 0.5 = 2x faster, 0.0 = instant.",
                 new AcceptableValueRange<float>(0f, 10f)));
 
         ItemRevealDelayMultiplier = config.Bind(
@@ -22,7 +22,7 @@ internal static class ModConfig
             "ItemRevealDelayMultiplier",
             0.5f,
             new ConfigDescription(
-                "Multiplier for item reveal delay inside searched containers. 1.0 = vanilla, 0.5 = 2x faster, 0.0 = instant.",
+                "Controls how quickly items are revealed one by one inside containers, corpses, bags, jackets and similar searchable loot. 1.0 = vanilla, 0.5 = 2x faster, 0.0 = instant.",
                 new AcceptableValueRange<float>(0f, 10f)));
     }
 }

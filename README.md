@@ -10,6 +10,17 @@ moon11yy Loot Search Speed
 
 A lightweight and vanilla-friendly search speed modifier for SPT.
 
+## What this mod changes
+
+- Initial container/corpse search delay
+- Item reveal delay inside searched containers
+
+## What this mod does not change
+
+- Unknown item examination speed
+- Trader search
+- Flea market search
+
 ## Features
 
 - Vanilla search behavior
