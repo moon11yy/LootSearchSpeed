@@ -53,6 +53,21 @@ loot search speed while preserving vanilla gameplay.
 2. Launch the game
 3. Configure in F12
 
+## Configuration
+
+InitialSearchDelayMultiplier
+
+Controls how long the "Searching..." animation takes.
+
+Default: 0.5
+
+
+ItemRevealDelayMultiplier
+
+Controls how fast items are revealed inside searched containers.
+
+Default: 0.5
+
 ## Development Testing
 
 It is recommended to test this mod on a clean SPT 4.0.13 installation before testing with large modlists.

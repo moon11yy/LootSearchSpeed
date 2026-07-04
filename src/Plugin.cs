@@ -1,3 +1,6 @@
+// Copyright (c) 2026 moon11yy
+// SPDX-License-Identifier: MIT
+
 using BepInEx;
 using HarmonyLib;
 using LootSearchSpeed.Utils;

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
-    <AssemblyName>LootSearchSpeed</AssemblyName>
+    <AssemblyName>moon11yy.LootSearchSpeed</AssemblyName>
     <RootNamespace>LootSearchSpeed</RootNamespace>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>

@@ -1,6 +1,8 @@
+// Copyright (c) 2026 moon11yy
+// SPDX-License-Identifier: MIT
+
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
@@ -11,7 +13,13 @@ namespace LootSearchSpeed.Patches;
 
 internal sealed class ContainerSearchPatch : BasePatch
 {
-    public ContainerSearchPatch(Harmony harmony) : base(harmony) { }
+    // Default Escape from Tarkov search delays.
+    private const int VanillaInitialSearchDelayMs = 2000;
+    private const float VanillaItemRevealDelayMs = 1000f;
+
+    public ContainerSearchPatch(Harmony harmony) : base(harmony)
+    {
+    }
 
     internal override void Apply()
     {
@@ -48,7 +56,9 @@ internal sealed class ContainerSearchPatch : BasePatch
     {
         foreach (CodeInstruction instruction in instructions)
         {
-            if (instruction.opcode == OpCodes.Ldc_I4 && instruction.operand is int value && value == 2000)
+            if (instruction.opcode == OpCodes.Ldc_I4 &&
+                instruction.operand is int value &&
+                value == VanillaInitialSearchDelayMs)
             {
                 yield return new CodeInstruction(
                     OpCodes.Call,
@@ -65,11 +75,13 @@ internal sealed class ContainerSearchPatch : BasePatch
     {
         foreach (CodeInstruction instruction in instructions)
         {
-            if (instruction.opcode == OpCodes.Ldc_R4 && instruction.operand is float value && Math.Abs(value - 1000f) < 0.01f)
+            if (instruction.opcode == OpCodes.Ldc_R4 &&
+                instruction.operand is float value &&
+                Math.Abs(value - VanillaItemRevealDelayMs) < 0.01f)
             {
                 yield return new CodeInstruction(
                     OpCodes.Call,
-                    AccessTools.Method(typeof(ContainerSearchPatch), nameof(GetItemRevealDelayBaseMs)));
+                    AccessTools.Method(typeof(ContainerSearchPatch), nameof(GetItemRevealDelayMs)));
 
                 continue;
             }
@@ -81,12 +93,12 @@ internal sealed class ContainerSearchPatch : BasePatch
     private static int GetInitialSearchDelayMs()
     {
         float multiplier = ModConfig.InitialSearchDelayMultiplier.Value;
-        return Math.Max(0, (int)(2000f * multiplier));
+        return Math.Max(0, (int)(VanillaInitialSearchDelayMs * multiplier));
     }
 
-    private static float GetItemRevealDelayBaseMs()
+    private static float GetItemRevealDelayMs()
     {
         float multiplier = ModConfig.ItemRevealDelayMultiplier.Value;
-        return Math.Max(0f, 1000f * multiplier);
+        return Math.Max(0f, VanillaItemRevealDelayMs * multiplier);
     }
 }
