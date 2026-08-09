@@ -1,3 +1,5 @@
+
+
 <p align="center">
   <img src="docs/images/logo.png" width="256">
 </p>
@@ -11,6 +13,10 @@ by <strong>moon11yy</strong>
 </p>
 
 ---
+
+![SPT](https://img.shields.io/badge/SPT-4.0.13-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+![C#](https://img.shields.io/badge/C%23-.NET%20Framework%204.7.2-purple)
 
 ## ✨ Features
 
